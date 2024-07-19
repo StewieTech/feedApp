@@ -1,4 +1,4 @@
-package com.example.feedApp;
+package com.feedApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +8,5 @@ public class FeedAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FeedAppApplication.class, args);
-	}
-
+}
 }

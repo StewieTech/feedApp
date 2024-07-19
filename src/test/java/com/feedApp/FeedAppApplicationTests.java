@@ -1,4 +1,4 @@
-package com.example.feedApp;
+package com.feedApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
