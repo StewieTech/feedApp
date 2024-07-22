@@ -26,6 +26,7 @@ public class UserDao {
 
         List<UserBean> users = this.jdbcTemplate.query(sql, new UserMapper(), username);
 
+//        return DataAccessUtils.singleResult(this.jdbcTemplate.query(sql, new UserMapper(), username));
         return users.isEmpty() ? null : users.get(0);
     }
 
