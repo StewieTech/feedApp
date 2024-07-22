@@ -2,6 +2,7 @@ package com.feedApp.jdbc;
 
 import java.sql.Timestamp ;
 
+// Holds data of an object, no userLogic
 public class UserBean {
     private Integer userId;
     private String firstName;
