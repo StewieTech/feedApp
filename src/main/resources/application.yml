@@ -1,0 +1,8 @@
+#spring.application.name=feedApp
+# Logger
+server:
+ port: 8080
+
+logging.level:
+  web: DEBUG
+  '[com.bptn.feedapp]': DEBUG
