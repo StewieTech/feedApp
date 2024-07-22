@@ -5,7 +5,7 @@ Link to FeedApp Prototype
 https://www.figma.com/proto/zPL5XPxChQ4h15uQA2uKYf/Feed-App?type=design&node-id=6-20&scaling=scale-down&page-id=0%3A1&starting-point-node-id=6%3A20
 
 <br>
-<video controls autoplay muted src="figma/videoFeed.mp4" title="Title"></video>
+<video controls autoplay muted src="https://stewietech.github.io/feedApp/assets/videoFeed.mp4" title="Title"></video>
 
 
 ### Branches
