@@ -11,15 +11,16 @@ https://www.figma.com/proto/zPL5XPxChQ4h15uQA2uKYf/Feed-App?type=design&node-id=
 ### Branches
 
 #### Login
-Before users can log in and write posts, they'll need to verify their emails with us.
+- Before users can log in and write posts, they'll need to verify their emails with us.
 ![alt text](figma/image.png)
 
 #### Register / Signup
-Our users will be able to sign up to use the FeedApp, but we will also be sending them a verification email and checking to ensure that they do exist. To do so, we'll use JSON Web Tokens, one of the most important and widely-used security measures in web technology today. 
+- Our users will be able to sign up to use the FeedApp, but we will also be sending them a verification email and checking to ensure that they do exist. To do so, we'll use JSON Web Tokens, one of the most important and widely-used security measures in web technology today. 
+
 ![alt text](figma/image-1.png)
 
 #### Forgot Password
-If a user needs to reset their password, we'll facilitate the process by emailing and using JWTs to authenticate their access. 
+- If a user needs to reset their password, we'll facilitate the process by emailing and using JWTs to authenticate their access. 
 ![alt text](figma/image-2.png)
 ![alt text](figma/image-4.png)
 ![alt text](figma/image-5.png)
@@ -32,12 +33,12 @@ If a user needs to reset their password, we'll facilitate the process by emailin
 ![alt text](figma/image-6.png)
 
 #### Edit Public Profile
-Users can update their profile in three ways: updating their basic profile text, changing their profile picture, or cropping their picture. They can also change their passwords.
+- Users can update their profile in three ways: updating their basic profile text, changing their profile picture, or cropping their picture. They can also change their passwords.
 ![alt text](figma/image-7.png)
 ![alt text](figma/image-8.png)
 
 ### Database Interaction Features
-Get Feed By Id: Given a user's ID, we will retrieve all of the necessary data to display their specific feed and display it for them.
+- Get Feed By Id: Given a user's ID, we will retrieve all of the necessary data to display their specific feed and display it for them.
 
 Get User Feeds: When not provided a user ID, we'll get all the available feeds for display.
 
