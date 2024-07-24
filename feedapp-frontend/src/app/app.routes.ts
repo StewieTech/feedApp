@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'account-verification', component: AccountVerificationComponent },
+  { path: 'registers', component: AccountVerificationComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
