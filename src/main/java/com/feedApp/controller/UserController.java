@@ -1,6 +1,7 @@
 package com.feedApp.controller;
 
-import com.feedApp.jdbc.UserBean;
+
+import com.feedApp.jpa.User;
 import com.feedApp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     UserService userService ;
 
     @GetMapping("/")
-    public List<UserBean> listUsers() {
+    public List<User> listUsers() {
         logger.debug("The listUsers() method was invoked!");
         return this.userService.listUsers();
     }
@@ -35,13 +37,13 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public UserBean findByUsername(@PathVariable String username) {
+    public Optional<User> findByUsername(@PathVariable String username) {
         logger.debug("The findByUsername() method was invoked!, username={}", username);
         return this.userService.findByUsername(username);
     }
     @GetMapping("/{first}/{last}/{username}/{password}/{phone}/{emailId}")
     public String createUser( @PathVariable String first, @PathVariable String last, @PathVariable String username, @PathVariable String password, @PathVariable String phone, @PathVariable String emailId) {
-        UserBean user = new UserBean();
+        User user = new User();
 
         user.setFirstName(first);
         user.setLastName(last);

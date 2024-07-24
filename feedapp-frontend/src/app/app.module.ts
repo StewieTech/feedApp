@@ -2,8 +2,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClient } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router'; // Import RouterModule and Routes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -11,23 +11,26 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AccountVerificationComponent } from './account-verification/account-verification.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthService } from './auth.service'; // Import AuthService
+import { routes } from './app.routes'; // Import routes
+
+
 
 @NgModule({
-declarations: [
-AppComponent,
-LoginComponent,
-RegisterComponent,
-ForgotPasswordComponent,
-AccountVerificationComponent,
-ResetPasswordComponent
-],
-imports: [
-BrowserModule,
-AppRoutingModule,
-FormsModule,
-HttpClientModule
-],
-providers: [AuthService], // Add AuthService here
-bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    AccountVerificationComponent,
+    ResetPasswordComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule, 
+    HttpClient, 
+    RouterModule.forRoot(routes) 
+  ],
+  providers: [AuthService], 
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,15 @@
 package com.feedApp.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name="\"User\"")
@@ -18,7 +22,7 @@ public class User implements Serializable {
     @Column(name="\"userId\"")
     private Integer userId;
 
-    @Column(name="\"fisrtName\"")
+    @Column(name="\"firstName\"")
     private String firstName;
 
     @Column(name="\"lastName\"")
@@ -39,6 +43,18 @@ public class User implements Serializable {
 
     @Column(name="\"createdOn\"")
     private Timestamp createdOn;
+
+    @JsonInclude(Include.NON_NULL)
+    @OneToOne(mappedBy = "user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private Profile profile ;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Feed> feeds ;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="user")
+    private List<FeedMetaData> feedMetaData ;
 
     public User() {
 
@@ -114,6 +130,30 @@ public class User implements Serializable {
 
     public void setCreatedOn(Timestamp createdOn) {
         this.createdOn = createdOn;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public List<Feed> getFeeds() {
+        return feeds;
+    }
+
+    public void setFeeds(List<Feed> feeds) {
+        this.feeds = feeds;
+    }
+
+    public List<FeedMetaData> getFeedMetaData() {
+        return feedMetaData;
+    }
+
+    public void setFeedMetaData(List<FeedMetaData> feedMetaData) {
+        this.feedMetaData = feedMetaData;
     }
 
     @Override
