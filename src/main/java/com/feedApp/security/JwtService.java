@@ -2,10 +2,12 @@ package com.feedApp.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.feedApp.jpa.User;
 import com.feedApp.provider.ResourceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -21,7 +23,7 @@ public class JwtService {
     @Autowired
     ResourceProvider provider ;
 
-  public String genearteJwtToken(String username, long expiration) {
+  public String generateJwtToken(String username, long expiration) {
     return JWT.create()
        .withIssuer(this.provider.getJwtIssuer())
             .withAudience(this.provider.getJwtAudience())
@@ -42,6 +44,7 @@ public class JwtService {
                .withIssuer(this.provider.getJwtIssuer())
                .build().verify(token).getSubject();
     }
+
 
 
 
