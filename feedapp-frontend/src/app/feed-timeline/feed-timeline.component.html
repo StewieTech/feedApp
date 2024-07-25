@@ -1,0 +1,16 @@
+<!-- src/app/feed-timeline/feed-timeline.component.html -->
+<div class="feed-timeline">
+    <div *ngFor="let post of posts">
+      <div class="post">
+        <p>{{ post.content }}</p>
+        <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Post Image" />
+        <div class="post-footer">
+          <button (click)="likePost(post.id)">Like</button>
+          <button (click)="commentOnPost(post.id)">Comment</button>
+        </div>
+      </div>
+    </div>
+    <button *ngIf="!isLoading" (click)="loadMore()">Load More</button>
+    <p *ngIf="isLoading">Loading...</p>
+  </div>
+  

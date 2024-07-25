@@ -1,0 +1,9 @@
+<!-- src/app/feed-post/feed-post.component.html -->
+<div class="feed-post-form">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <textarea formControlName="content" placeholder="What's on your mind?" rows="4"></textarea>
+      <input type="file" (change)="onImageSelected($event)" />
+      <button type="submit">Post</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,25 @@
+/* src/app/nav-bar/nav-bar.component.css */
+.nav-bar {
+    background-color: #f8f8f8;
+    padding: 1em;
+  }
+  
+  .nav-bar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .nav-bar ul li {
+    display: inline;
+    margin-right: 1em;
+  }
+  
+  .nav-bar ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav-bar ul li a:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,29 @@
+<!-- src/app/public-profile/public-profile.component.html -->
+<div class="profile-section">
+    <h2 class="text-xl font-bold mb-4">Public Profile</h2>
+    <div class="text-center mb-4">
+      <img src="path/to/default-image.png" alt="Profile Picture" class="rounded-full w-16 h-16 mx-auto mb-2" />
+      <input type="file" (change)="onImageSelected($event)" class="mb-2" />
+      <button class="bg-purple-600 text-white py-2 px-4 rounded-lg">Upload Photo</button>
+    </div>
+    <form [formGroup]="publicProfileForm" (ngSubmit)="onSave()">
+      <div class="form-group mb-4">
+        <label class="block text-gray-700">Headline</label>
+        <input formControlName="headline" placeholder="Enter a headline" class="w-full p-2 border rounded-lg" />
+      </div>
+      <div class="form-group mb-4">
+        <label class="block text-gray-700">Bio</label>
+        <input formControlName="bio" placeholder="Enter your bio" class="w-full p-2 border rounded-lg" />
+      </div>
+      <div class="form-group mb-4">
+        <label class="block text-gray-700">City</label>
+        <input formControlName="city" placeholder="Enter your city" class="w-full p-2 border rounded-lg" />
+      </div>
+      <div class="form-group mb-4">
+        <label class="block text-gray-700">Country</label>
+        <input formControlName="country" placeholder="Enter your country" class="w-full p-2 border rounded-lg" />
+      </div>
+      <button type="submit" class="bg-purple-600 text-white py-2 px-4 rounded-lg">Save</button>
+    </form>
+  </div>
+  
