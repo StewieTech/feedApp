@@ -115,7 +115,7 @@ public class User implements Serializable {
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
-
+//
     public Boolean getEmailVerified() {
         return emailVerified;
     }
