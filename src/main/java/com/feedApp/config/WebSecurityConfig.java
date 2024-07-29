@@ -40,6 +40,7 @@ public class WebSecurityConfig {
     @Autowired
     CustomAuthEntryPoint customAuthEntryPoint ;
 
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder() ;
     }

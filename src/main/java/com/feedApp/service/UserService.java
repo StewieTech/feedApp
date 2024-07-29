@@ -1,10 +1,12 @@
 package com.feedApp.service;
 
 import com.feedApp.exception.domain.EmailExistException;
+import com.feedApp.exception.domain.UserNotFoundException;
 import com.feedApp.exception.domain.UsernameExistException;
 import com.feedApp.jpa.User;
 import com.feedApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service ;
 
@@ -58,6 +60,16 @@ public class UserService {
 
         this.userRepository.findByEmailId(emailId).ifPresent(u-> {throw new EmailExistException(String.format("Email already exists, %s", u.getEmailId()));
         });
+    }
+
+    public void verifyEmail() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
+
+        user.setEmailVerified(true);
+        this.userRepository.save(user);
     }
 
 
