@@ -152,7 +152,7 @@ public class UserService {
     private void updateValue(Supplier<String> getter, Consumer<String> setter) {
         Optional.ofNullable(getter.get())
                 .filter(StringUtils::hasText)
-                .map(this.passwordEncoder::encode)
+                .map(String::trim)
                 .ifPresent(setter);
     }
 
