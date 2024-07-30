@@ -137,6 +137,13 @@ public class UserService {
         user.setPassword(this.passwordEncoder.encode(password));
         this.userRepository.save(user);
     }
+
+    public User getUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName() ;
+
+        return this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
+    }
 }
 
 
