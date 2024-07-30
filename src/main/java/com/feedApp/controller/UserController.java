@@ -2,6 +2,7 @@ package com.feedApp.controller;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.feedApp.jpa.Profile;
 import com.feedApp.jpa.User;
 import com.feedApp.service.UserService;
 import org.slf4j.Logger;
@@ -112,6 +113,13 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         logger.debug("Updating User Data");
         return this.userService.updateUser(user);
+    }
+
+    @PostMapping("/update/profile")
+    public User updateUserProfile(@RequestBody Profile profile) {
+        logger.debug("Updating User Profile Data, Profile: {}", profile.toString());
+
+        return this.userService.updateUserProfile(profile);
     }
 
 
