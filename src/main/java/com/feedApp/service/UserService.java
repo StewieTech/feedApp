@@ -5,6 +5,7 @@ import com.feedApp.exception.domain.EmailExistException;
 import com.feedApp.exception.domain.EmailNotVerifiedException;
 import com.feedApp.exception.domain.UserNotFoundException;
 import com.feedApp.exception.domain.UsernameExistException;
+import com.feedApp.jpa.Profile;
 import com.feedApp.jpa.User;
 import com.feedApp.provider.ResourceProvider;
 import com.feedApp.repository.UserRepository;
@@ -186,7 +187,32 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
     }
 
+    private User updateUserProfile(Profile profile, User user) {
 
+        Profile currentProfile = user.getProfile();
+
+        if (Optional.ofNullable(currentProfile).isPresent()) {
+
+            this.updateValue(profile::getHeadline, currentProfile::setHeadline);
+            this.updateValue(profile::getBio, currentProfile::setBio);
+            this.updateValue(profile::getCity, currentProfile::setCity);
+            this.updateValue(profile::getCountry, currentProfile::setCountry);
+            this.updateValue(profile::getPicture, currentProfile::setPicture);
+        }
+        else {
+            user.setProfile(profile);
+            profile.setUser(user);
+        }
+
+        return this.userRepository.save(user);
+    }
+
+    public User updateUserProfile(Profile profile) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return this.userRepository.findByUsername(username)
+                .map(user -> this.updateUserProfile(profile,user))
+                .orElseThrow(()-> new UserNotFoundException(String.format("Username doesn't exist, %s",username)));
+    }
 }
 
 
