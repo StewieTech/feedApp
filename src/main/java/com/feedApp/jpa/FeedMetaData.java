@@ -60,11 +60,11 @@ public class FeedMetaData implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public Boolean getLike() {
+    public Boolean getIsLike() {
         return isLike;
     }
 
-    public void setLike(Boolean like) {
+    public void setIsLike(Boolean like) {
         isLike = like;
     }
 

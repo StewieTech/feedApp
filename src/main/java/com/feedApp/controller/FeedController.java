@@ -2,6 +2,7 @@ package com.feedApp.controller;
 
 import com.feedApp.domain.PageResponse;
 import com.feedApp.jpa.Feed;
+import com.feedApp.jpa.FeedMetaData;
 import com.feedApp.service.FeedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,5 +43,13 @@ public class FeedController {
 
         return this.feedService.getOtherUsersFeeds(pageNum,pageSize);
     }
+
+    @PostMapping("/meta/{feedId}")
+    public FeedMetaData createFeedMetaData(@PathVariable int feedId, @RequestBody FeedMetaData meta) {
+        logger.debug("Creating FeedMetaData, feedId: {}", feedId);
+        return this.feedService.createFeedMetaData(feedId, meta) ;
+    }
+
+
 
 }
