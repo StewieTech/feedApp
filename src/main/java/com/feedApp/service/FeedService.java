@@ -1,5 +1,6 @@
 package com.feedApp.service;
 
+import com.feedApp.exception.domain.FeedNotFoundException;
 import com.feedApp.exception.domain.UserNotFoundException;
 import com.feedApp.jpa.Feed;
 import com.feedApp.jpa.User;
@@ -23,10 +24,11 @@ public class FeedService {
     @Autowired
     UserRepository userRepository ;
 
-    public Feed getFeedById(int id) {
+    public Feed getFeedById(int feedId) {
         final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-        return feedRepository.findById(id).orElse(null) ;
+        return feedRepository.findById(feedId)
+                .orElseThrow(() -> new FeedNotFoundException(String.format("Feed doesn't exist, %d", feedId)));
     }
 
     public Feed createFeed(Feed feed) {
