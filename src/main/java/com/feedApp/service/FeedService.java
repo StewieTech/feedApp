@@ -1,5 +1,6 @@
 package com.feedApp.service;
 
+import com.feedApp.domain.PageResponse;
 import com.feedApp.exception.domain.FeedNotFoundException;
 import com.feedApp.exception.domain.UserNotFoundException;
 import com.feedApp.jpa.Feed;
@@ -9,6 +10,9 @@ import com.feedApp.repository.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +49,17 @@ public class FeedService {
         feed.setCreatedOn(Timestamp.from(Instant.now()));
 
         return this.feedRepository.save(feed);
+    }
+
+    public PageResponse<Feed> getUserFeeds(int pageNum, int pageSize) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
+
+        Page<Feed> paged = this.feedRepository.findByUser(user, PageRequest.of(pageNum, pageSize, Sort.by("feedId").descending()));
+
+        return new PageResponse<Feed>(paged) ;
     }
 
 }
