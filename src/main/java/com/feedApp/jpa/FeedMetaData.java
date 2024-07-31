@@ -20,7 +20,7 @@ public class FeedMetaData implements Serializable {
     @Column(name="\"createdOn\"")
     private Timestamp createdOn;
 
-    @Column(name="\"IsLike\"")
+    @Column(name="\"isLike\"")
     private Boolean isLike ;
 
     @ManyToOne

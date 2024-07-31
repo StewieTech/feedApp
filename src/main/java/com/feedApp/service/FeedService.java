@@ -24,10 +24,15 @@ public class FeedService {
     @Autowired
     UserRepository userRepository ;
 
-    public Feed getFeedById(int feedId) {
-        final Logger logger = LoggerFactory.getLogger(this.getClass());
+//    public Feed getFeedById(int id) {
+//        final Logger logger = LoggerFactory.getLogger(this.getClass());
+//
+//        return feedRepository.findById(id).orElse(null) ;
+//    }
 
-        return feedRepository.findById(feedId)
+    public Feed getFeedById(int feedId) {
+
+        return this.feedRepository.findById(feedId)
                 .orElseThrow(() -> new FeedNotFoundException(String.format("Feed doesn't exist, %d", feedId)));
     }
 

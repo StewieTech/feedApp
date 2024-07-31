@@ -16,10 +16,16 @@ public class FeedController {
     @Autowired
     FeedService feedService;
 
+    @GetMapping("/{feedId}")
+    public Feed getFeed(@PathVariable int feedId) {
+        logger.debug("Getting Feed, feedId: {}", feedId);
+        return this.feedService.getFeedById(feedId);
+    }
     @PostMapping
     public Feed createFeed(@RequestBody Feed feed) {
         logger.debug("Creating Feed");
         return this.feedService.createFeed(feed);
 
     }
+
 }
