@@ -1,5 +1,6 @@
 package com.feedApp.controller;
 
+import com.feedApp.domain.PageResponse;
 import com.feedApp.jpa.Feed;
 import com.feedApp.service.FeedService;
 import org.slf4j.Logger;
@@ -26,6 +27,13 @@ public class FeedController {
         logger.debug("Creating Feed");
         return this.feedService.createFeed(feed);
 
+    }
+
+    @GetMapping("/user/{pageNum}/{pageSize}")
+    public PageResponse<Feed> getUserFeeds(@PathVariable int pageNum, @PathVariable int pageSize) {
+        logger.debug("Getting User Feeds List, pageNum: {}, pageSize: {}", pageNum, pageSize);
+
+        return this.feedService.getUserFeeds(pageNum, pageSize);
     }
 
 }
