@@ -1,6 +1,8 @@
 package com.feedApp.controller;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.feedApp.jpa.Profile;
 import com.feedApp.jpa.User;
 import com.feedApp.service.UserService;
 import org.slf4j.Logger;
@@ -93,6 +95,31 @@ public class UserController {
 
         this.userService.sendResetPasswordEmail(emailId);
 
+    }
+
+    @PostMapping("/reset")
+    public void passwordReset(@RequestBody JsonNode json) {
+        logger.debug("Resetting Password, password: {}", json.get("password").asText());
+        this.userService.resetPassword(json.get("password").asText());
+    }
+
+    @GetMapping("/get")
+    public User getUser() {
+        logger.debug("Getting User Data");
+        return this.userService.getUser();
+    }
+
+    @PostMapping("/update")
+    public User updateUser(@RequestBody User user) {
+        logger.debug("Updating User Data");
+        return this.userService.updateUser(user);
+    }
+
+    @PostMapping("/update/profile")
+    public User updateUserProfile(@RequestBody Profile profile) {
+        logger.debug("Updating User Profile Data, Profile: {}", profile.toString());
+
+        return this.userService.updateUserProfile(profile);
     }
 
 
